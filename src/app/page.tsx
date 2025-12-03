@@ -8,7 +8,7 @@ export default function Home() {
         <div className="flex items-center text-4xl font-bold text-white">
           <span>@</span>
           <TextType
-            text={['pyvnoaim', 'rtiaul']}
+            text={['pyvnoaim', 'rtiaul', 'pyvno']}
             cursorCharacter="_"
             typingSpeed={75}
             deletingSpeed={75}

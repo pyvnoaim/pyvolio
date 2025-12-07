@@ -1,12 +1,10 @@
 import Link from 'next/link'
 import { FaGithub, FaXTwitter, FaYoutube } from 'react-icons/fa6'
 import DecryptedText from '@/components/DecryptedText'
-import TargetCursor from '@/components/TargetCursor'
 
 export default function Footer() {
   return (
     <footer className="border-t bg-zinc-900 py-8">
-      <TargetCursor spinDuration={0} hideDefaultCursor={true} parallaxOn={true} />
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center px-4 text-white md:grid-cols-3">
         <div className="flex items-center space-x-3">
           <div className="relative h-5 w-5">
@@ -19,7 +17,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit @rtiaul on X"
-            className="cursor-target p-2 duration-300 hover:cursor-none hover:text-[#ff9a9a]"
+            className="p-2 duration-300 hover:text-[#ff9a9a]"
           >
             <div className="inline-flex w-[72px] justify-center">
               <DecryptedText
@@ -43,7 +41,7 @@ export default function Footer() {
             target="_blank"
             aria-label="X/Twitter"
             rel="noopener noreferrer"
-            className="cursor-target p-2 duration-300 hover:scale-125 hover:cursor-none hover:text-[#ff9a9a]"
+            className="p-2 duration-300 hover:scale-125 hover:text-[#ff9a9a]"
           >
             <FaXTwitter className="h-5 w-5" />
           </Link>
@@ -52,7 +50,7 @@ export default function Footer() {
             target="_blank"
             aria-label="GitHub"
             rel="noopener noreferrer"
-            className="cursor-target p-2 duration-300 hover:scale-125 hover:cursor-none hover:text-[#ff9a9a]"
+            className="p-2 duration-300 hover:scale-125 hover:text-[#ff9a9a]"
           >
             <FaGithub className="h-5 w-5" />
           </Link>
@@ -61,7 +59,7 @@ export default function Footer() {
             target="_blank"
             aria-label="YouTube"
             rel="noopener noreferrer"
-            className="cursor-target p-2 duration-300 hover:scale-125 hover:cursor-none hover:text-[#ff9a9a]"
+            className="p-2 duration-300 hover:scale-125 hover:text-[#ff9a9a]"
           >
             <FaYoutube className="h-5 w-5" />
           </Link>

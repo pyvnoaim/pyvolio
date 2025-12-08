@@ -1,5 +1,11 @@
 @import 'tailwindcss';
 
+* {
+  cursor:
+    url('/cursor.png') 15 15,
+    none !important;
+}
+
 ::selection {
   background: var(--foreground);
   color: var(--background);

@@ -15,12 +15,12 @@ export const metadata: Metadata = {
     template: '%s | pyvolio',
     default: 'home | pyvolio',
   },
-  description: '+aim +peripherals',
+  description: "pyvno's portfolio",
   keywords: ['gaming', 'peripherals', 'aim', 'tech', 'pyvolio', 'pyvno'],
   authors: [{ name: 'pyvno' }],
   openGraph: {
     title: 'pyvolio',
-    description: '+aim +peripherals',
+    description: "pyvno's portfolio",
     url: 'https://pyvno.xyz/',
     siteName: 'pyvolio',
     images: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'pyvolio',
-    description: '+aim +peripherals',
+    description: "pyvno's portfolio",
     images: ['/banner.png'],
     creator: '@pyvnoaim',
   },

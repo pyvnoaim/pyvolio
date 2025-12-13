@@ -64,34 +64,39 @@ export default function Peripherals() {
   })
 
   return (
-    <div className="flex min-h-screen flex-col px-4 pt-6 sm:px-6 md:px-8">
-      {Object.keys(grouped).map((type) => (
-        <div key={type} className="mb-8 w-full last:mb-0">
-          <h2 className="mb-4 flex items-center gap-2 text-xl font-semibold text-white">
-            {iconsMap[type]} {typeNames[type] || type + 's'}
-          </h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {grouped[type].map((item) => (
-              <div
-                key={item.id}
-                className="group flex flex-col rounded-lg border border-zinc-700 bg-zinc-900 p-4 transition-all duration-300 hover:scale-[1.02] hover:border-zinc-500 hover:shadow-md"
-              >
-                <div className="flex items-center gap-1 text-xs text-zinc-400">
-                  <span className="text-zinc-500" aria-label={item.type}>
-                    {iconsMap[item.type]}
-                  </span>
-                  <span className="lowercase transition-colors duration-300 group-hover:text-[#ff9a9a]">
-                    {item.type}
-                  </span>
-                </div>
-                <div className="mt-2 text-sm font-semibold text-white">{`${item.brand} ${item.name}`}</div>
-                {item.sub && <div className="mt-1 text-xs text-zinc-400">{item.sub}</div>}
-                {!item.using && <div className="mt-1 text-xs text-[#ff9a9a]">not in use</div>}
+    <div className="flex min-h-screen px-4 sm:px-6 md:px-8">
+      <div className="flex flex-1 items-center justify-center">
+        <div className="w-full max-w-7xl">
+          {Object.keys(grouped).map((type) => (
+            <div key={type} className="mb-8 w-full last:mb-0">
+              <h2 className="mb-4 flex items-center gap-2 text-xl font-semibold text-white">
+                {iconsMap[type]} {typeNames[type] || type + 's'}
+              </h2>
+
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {grouped[type].map((item) => (
+                  <div
+                    key={item.id}
+                    className="group flex flex-col rounded-lg border border-zinc-700 bg-zinc-900 p-4 transition-all duration-300 hover:scale-[1.02] hover:border-zinc-500 hover:shadow-md"
+                  >
+                    <div className="flex items-center gap-1 text-xs text-zinc-400">
+                      <span className="text-zinc-500">{iconsMap[item.type]}</span>
+                      <span className="lowercase group-hover:text-[#ff9a9a]">{item.type}</span>
+                    </div>
+
+                    <div className="mt-2 text-sm font-semibold text-white">
+                      {item.brand} {item.name}
+                    </div>
+
+                    {item.sub && <div className="mt-1 text-xs text-zinc-400">{item.sub}</div>}
+                    {item.using && <div className="mt-1 text-xs text-[#ff9a9a]">in use</div>}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   )
 }

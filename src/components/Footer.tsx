@@ -24,7 +24,7 @@ export default function Footer() {
                 <DecryptedText
                   text="@rtiaul"
                   initialText="ritual"
-                  speed={25}
+                  speed={15}
                   sequential={false}
                   animateOn="hover"
                 />

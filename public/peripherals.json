@@ -5,7 +5,7 @@
     "brand": "pulsar",
     "name": "x2f",
     "sub": "artisan mizugumo futae p8",
-    "using": true
+    "using": false
   },
   {
     "id": 2,
@@ -44,8 +44,8 @@
     "type": "mouse",
     "brand": "endgame gear",
     "name": "op1 8k v2",
-    "sub": "",
-    "using": false
+    "sub": "artisan mizugumo futae p8",
+    "using": true
   },
   {
     "id": 7,

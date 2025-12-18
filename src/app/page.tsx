@@ -23,7 +23,12 @@ export default function Home() {
       try {
         const res = await fetch('/api/peripherals/active')
         const data: Peripheral[] = await res.json()
-        setItems(data)
+
+        // Sort items in specific order
+        const order = ['mouse', 'mousepad', 'keyboard', 'headset']
+        const sortedItems = data.sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type))
+
+        setItems(sortedItems)
       } catch (err) {
         console.error('Failed to fetch peripherals', err)
       } finally {

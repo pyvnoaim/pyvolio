@@ -81,7 +81,7 @@ export default function Page() {
             {peripherals.map((item) => (
               <div
                 key={item.id}
-                className="group flex flex-col rounded-lg border border-zinc-700 bg-zinc-900 p-4 transition hover:scale-[1.02] hover:border-zinc-500 hover:shadow-md"
+                className="group flex flex-col rounded-lg border border-zinc-700 bg-zinc-900 p-4 transition-all duration-300 hover:scale-[1.02] hover:border-zinc-500 hover:shadow-md"
               >
                 <div className="flex items-center gap-1 text-xs text-zinc-400">
                   <span className="text-zinc-500">{ICONS[item.type]}</span>

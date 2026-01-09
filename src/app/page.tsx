@@ -1,88 +1,55 @@
-'use client'
-
-import { useEffect, useState, useMemo } from 'react'
-import { Peripheral } from '@/types'
-import PeripheralSkeleton from '@/components/PeripheralCardSkeleton'
 import PeripheralCard from '@/components/PeripheralCard'
+import { Peripheral } from '@/types'
 
-function usePeripherals() {
-  const [items, setItems] = useState<Peripheral[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    const fetchPeripherals = async () => {
-      try {
-        const res = await fetch('/api/peripherals/active')
-        if (!res.ok) throw new Error('network response was not ok')
-        const data: Peripheral[] = await res.json()
-        setItems(data)
-      } catch (err) {
-        console.error(err)
-        setError('failed to load peripherals')
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchPeripherals()
-  }, [])
-
-  return { items, loading, error }
+async function getPeripherals(): Promise<Peripheral[]> {
+  const res = await fetch('http://pyvno.xyz/api/peripherals/active')
+  if (!res.ok) throw new Error('Failed to fetch peripherals')
+  return res.json()
 }
 
-export default function Home() {
-  const { items, loading, error } = usePeripherals()
+export default async function Home() {
+  const items = await getPeripherals()
 
-  const sortedItems = useMemo(() => {
-    const orderMap: Record<string, number> = { mouse: 0, mousepad: 1, keyboard: 2, headset: 3 }
-    return [...items].sort((a, b) => (orderMap[a.type] ?? 99) - (orderMap[b.type] ?? 99))
-  }, [items])
+  const sortedItems = items.sort((a, b) => {
+    const order = { mouse: 0, mousepad: 1, keyboard: 2, headset: 3 }
+    return (order[a.type] ?? 99) - (order[b.type] ?? 99)
+  })
 
-  if (loading)
-    return (
-      <main className="flex flex-1 items-center justify-center">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {Array.from({ length: items.length || 4 }).map((_, i) => (
-            <PeripheralSkeleton key={i} />
-          ))}
-        </div>
-      </main>
-    )
-
-  if (error)
-    return (
-      <main className="flex flex-1 items-center justify-center">
-        <p className="text-red-500">{error}</p>
-      </main>
-    )
-
-  if (!items.length)
-    return (
-      <main className="flex flex-1 items-center justify-center">
-        <p className="text-zinc-400">no active peripherals found</p>
-      </main>
-    )
+  if (!items.length) {
+    return <p className="text-zinc-400">no active peripherals found</p>
+  }
 
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-6 p-4 sm:p-6">
-      <h1 className="mb-4 text-center text-xl font-bold sm:text-2xl">active peripherals</h1>
+    <div className="flex min-h-screen w-full flex-col items-center justify-center gap-6 p-4 sm:p-6">
+      <h1 className="text-center text-xl font-bold sm:text-2xl">active peripherals</h1>
+
       <div className="grid w-full max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {sortedItems.map((item) => (
           <PeripheralCard key={item.id} item={item} />
         ))}
       </div>
 
-      <h1 className="mt-8 mb-4 text-center text-xl font-bold sm:text-2xl">latest video</h1>
-      <div className="w-full max-w-3xl">
-        <iframe
-          className="aspect-video w-full rounded-lg shadow-lg"
-          src="https://www.youtube.com/embed/z11s5VNzQXE"
-          title="YouTube video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+      <h1 className="mt-8 text-center text-xl font-bold sm:text-2xl">social activity</h1>
+      <div className="flex w-full max-w-6xl flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-8">
+        <div className="aspect-video w-full sm:w-[38%]">
+          <iframe
+            className="h-full w-full rounded-lg shadow-lg"
+            src="https://www.youtube.com/embed/z11s5VNzQXE"
+            title="YouTube video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+
+        <div className="aspect-video w-full sm:w-[38%]">
+          <iframe
+            className="h-full w-full rounded-lg shadow-lg"
+            src="https://player.twitch.tv/?channel=pyvno&parent=localhost"
+            title="Live Stream"
+            allowFullScreen
+          />
+        </div>
       </div>
-    </main>
+    </div>
   )
 }

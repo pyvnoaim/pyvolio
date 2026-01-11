@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'kovaaks',
 }
 
-export default function PeripheralsLayout({ children }: { children: ReactNode }) {
+export default function KovaaksLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-6 p-4 sm:p-6">
       {children}

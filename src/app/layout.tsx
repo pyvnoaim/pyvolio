@@ -52,10 +52,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${jetbrains.variable} antialiased`}>
       <body className="flex min-h-screen flex-col">
+        {/* Navbar is fixed, so we need padding in main */}
         <Navbar />
-        <main className="flex w-full flex-1 flex-col items-center justify-start overflow-auto pt-16 md:justify-center md:pt-0">
+
+        <main className="flex w-full flex-1 flex-col items-center justify-start overflow-auto pt-16">
           {children}
         </main>
+
         <Footer />
       </body>
     </html>

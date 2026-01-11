@@ -1,3 +1,4 @@
+// page.tsx
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
@@ -17,10 +18,10 @@ const ICONS: Record<Peripheral['type'], React.ReactElement> = {
 }
 
 const TYPE_NAMES: Record<Peripheral['type'], string> = {
-  mouse: 'mice',
-  mousepad: 'mousepads',
-  keyboard: 'keyboards',
-  headset: 'headsets',
+  mouse: 'Mice',
+  mousepad: 'Mousepads',
+  keyboard: 'Keyboards',
+  headset: 'Headsets',
 }
 
 const TYPE_ORDER: Peripheral['type'][] = ['mouse', 'mousepad', 'keyboard', 'headset']
@@ -69,12 +70,13 @@ export default function Page() {
 
   const skeletonCount = 8
 
-  if (!items.length && !loading)
+  if (!items.length && !loading) {
     return (
       <main className="flex flex-1 items-center justify-center">
-        <p className="text-zinc-400">no active peripherals found</p>
+        <p className="text-zinc-400">No active peripherals found</p>
       </main>
     )
+  }
 
   return (
     <>
@@ -82,7 +84,7 @@ export default function Page() {
         <section key={type} className="mb-10 last:mb-0">
           <h2 className="mb-4 flex items-center gap-2 text-xl font-semibold text-white">
             {ICONS[type]}
-            {TYPE_NAMES[type] ?? `${type}s`}
+            {TYPE_NAMES[type]}
           </h2>
 
           <div className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

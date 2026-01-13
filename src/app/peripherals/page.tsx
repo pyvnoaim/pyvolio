@@ -18,10 +18,10 @@ const ICONS: Record<Peripheral['type'], React.ReactElement> = {
 }
 
 const TYPE_NAMES: Record<Peripheral['type'], string> = {
-  mouse: 'Mice',
-  mousepad: 'Mousepads',
-  keyboard: 'Keyboards',
-  headset: 'Headsets',
+  mouse: 'mice',
+  mousepad: 'mousepads',
+  keyboard: 'keyboards',
+  headset: 'headsets',
 }
 
 const TYPE_ORDER: Peripheral['type'][] = ['mouse', 'mousepad', 'keyboard', 'headset']

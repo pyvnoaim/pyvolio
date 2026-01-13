@@ -1,9 +1,10 @@
 import PeripheralCard from '@/components/PeripheralCard'
+import LinkCard from '@/components/LinkCard'
 import { Peripheral } from '@/types'
 
 async function getPeripherals(): Promise<Peripheral[]> {
   const res = await fetch('http://pyvno.xyz/api/peripherals/active')
-  if (!res.ok) throw new Error('Failed to fetch peripherals')
+  if (!res.ok) throw new Error('failed to fetch peripherals')
   return res.json()
 }
 
@@ -20,35 +21,41 @@ export default async function Home() {
   }
 
   return (
-    <div className="flex w-full flex-col items-center gap-6 p-4 sm:p-6">
-      <h1 className="text-center text-xl font-bold sm:text-2xl">active peripherals</h1>
-
-      <div className="grid w-full max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {sortedItems.map((item) => (
-          <PeripheralCard key={item.id} item={item} />
-        ))}
+    <div className="flex w-full flex-col items-center space-y-12 px-4 py-8 sm:px-6 md:px-8">
+      {/* Links */}
+      <div className="w-full max-w-2xl space-y-4">
+        <h1 className="text-center text-lg font-bold sm:text-xl md:text-2xl">links</h1>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <LinkCard url="https://gearz.gg/pyvno" title="gearz" />
+          <LinkCard url="https://x.com/pyvnoaim" title="twitter" />
+          <LinkCard url="https://evxl.app/u/pyvno" title="benchmarks" />
+          <LinkCard url="https://tracker.gg" title="Tracker" />
+        </div>
       </div>
 
-      <h1 className="mt-12 text-center text-xl font-bold sm:text-2xl">social activity</h1>
-
-      <div className="mt-4 flex w-full max-w-6xl flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-8">
-        <div className="aspect-video max-h-100 w-full sm:w-[38%]">
-          <iframe
-            className="h-full w-full rounded-lg shadow-lg"
-            src="https://www.youtube.com/embed/z11s5VNzQXE"
-            title="YouTube Video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+      {/* Peripherals */}
+      <div className="w-full max-w-7xl space-y-4">
+        <h1 className="text-center text-lg font-bold sm:text-xl md:text-2xl">active peripherals</h1>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {sortedItems.map((item) => (
+            <PeripheralCard key={item.id} item={item} />
+          ))}
         </div>
+      </div>
 
-        <div className="aspect-video max-h-100 w-full sm:w-[38%]">
-          <iframe
-            className="h-full w-full rounded-lg shadow-lg"
-            src="https://player.twitch.tv/?channel=pyvno&parent=localhost"
-            title="Live Stream"
-            allowFullScreen
-          />
+      {/* Social */}
+      <div className="w-full max-w-6xl space-y-4">
+        <h1 className="text-center text-lg font-bold sm:text-xl md:text-2xl">social activity</h1>
+        <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-8">
+          <div className="aspect-video w-full sm:w-3/5 md:w-2/5">
+            <iframe
+              className="h-full w-full rounded-lg shadow-lg"
+              src="https://www.youtube.com/embed/ff4ka5-7khM"
+              title="YouTube Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -13,9 +13,10 @@ export interface KovaaksActivityItem {
   kovaaksPlus: boolean
 }
 
-// Optional simplified type for frontend display
 export interface Highscore {
   timestamp: string
   scenario: string
   score: number
+  rank: number
+  cm360: number
 }

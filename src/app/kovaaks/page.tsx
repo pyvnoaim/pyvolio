@@ -1,59 +1,101 @@
-// Kovaaks.tsx
-import type { KovaaksActivityItem, Highscore } from '@/types'
+'use client'
 
-async function getHighscores(username: string): Promise<Highscore[]> {
+import { useEffect, useState } from 'react'
+import type { Highscore, KovaaksActivityItem } from '@/types'
+import HighscoreCard from '@/components/HighscoreCard'
+import KovaaksLoading from './loading'
+
+async function fetchHighscores(username: string): Promise<Highscore[]> {
   const res = await fetch(
     `https://kovaaks.com/webapp-backend/user/activity/recent?username=${username}`,
     { next: { revalidate: 60 } },
   )
-  if (!res.ok) throw new Error('Failed to fetch highscores')
+  if (!res.ok) throw new Error('Failed to fetch recent activity')
 
   const data: KovaaksActivityItem[] = await res.json()
+  if (!data.length) return []
 
-  return data
-    .map((item) => ({
-      timestamp: item.timestamp,
-      scenario: item.scenarioName,
-      score: item.score,
-    }))
-    .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+  const buildHighscore = (
+    item: KovaaksActivityItem,
+    entry?: { rank?: number; score?: number; attributes?: { cm360?: number } },
+  ): Highscore => ({
+    timestamp: new Date(item.timestamp).toISOString(),
+    scenario: item.scenarioName,
+    score: entry?.score ?? item.score,
+    rank: entry?.rank ?? 0,
+    cm360: entry?.attributes?.cm360 ?? 0,
+  })
+
+  const highscoresWithRank = await Promise.all(
+    data.map(async (item) => {
+      if (!item.leaderboardId) return buildHighscore(item)
+      try {
+        const leaderboardRes = await fetch(
+          `https://kovaaks.com/webapp-backend/leaderboard/scores/global?leaderboardId=${item.leaderboardId}&page=0&max=1&usernameSearch=${username}`,
+          { next: { revalidate: 60 } },
+        )
+        if (!leaderboardRes.ok) return buildHighscore(item)
+        const leaderboardData = await leaderboardRes.json()
+        const entry = leaderboardData.data?.[0]
+        return buildHighscore(item, entry)
+      } catch {
+        return buildHighscore(item)
+      }
+    }),
+  )
+
+  return highscoresWithRank.sort((a, b) => +new Date(b.timestamp) - +new Date(a.timestamp))
 }
 
 const formatDate = (timestamp?: string) => {
   if (!timestamp) return 'unknown date'
   const parsed = new Date(timestamp)
   if (isNaN(parsed.getTime())) return 'unknown date'
-  const pad = (n: number) => n.toString().padStart(2, '0')
-  const day = pad(parsed.getDate())
-  const month = pad(parsed.getMonth() + 1)
-  const year = parsed.getFullYear()
-  const hours = pad(parsed.getHours())
-  const minutes = pad(parsed.getMinutes())
-  return `${day}.${month}.${year} ${hours}:${minutes}`
+  return new Intl.DateTimeFormat('en-GB', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(parsed)
 }
 
-export default async function Kovaaks() {
-  const highscores: Highscore[] = await getHighscores('pyvno')
+export default function Kovaaks() {
+  const [highscores, setHighscores] = useState<Highscore[]>([])
+  const [loading, setLoading] = useState(true)
 
-  if (!highscores.length) {
-    return <p className="mt-4 text-center text-zinc-400">no highscores found</p>
-  }
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const data = await fetchHighscores('pyvno')
+        setHighscores(data)
+      } catch (err) {
+        console.error(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    load()
+  }, [])
+
+  if (loading) return <KovaaksLoading />
 
   return (
-    <div className="flex w-full flex-col gap-4">
-      <h1 className="text-center text-lg font-bold sm:text-xl md:text-2xl">latest highscores</h1>
+    <div className="flex w-full flex-col items-center space-y-6 sm:px-6 md:px-8">
+      {/* Page title */}
+      <div className="w-full max-w-2xl">
+        <h1 className="text-center text-lg font-bold sm:text-xl md:text-2xl">latest highscores</h1>
+      </div>
 
-      <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-        {highscores.map((h, idx) => (
-          <div
-            key={idx}
-            className="flex flex-col rounded-lg border border-zinc-700 bg-zinc-900 p-4 transition-all duration-300 hover:scale-[1.02] hover:border-zinc-500 hover:shadow-md"
-          >
-            <div className="text-xs text-zinc-400">{formatDate(h.timestamp)}</div>
-            <div className="mt-1 text-sm font-semibold text-white">{h.scenario}</div>
-            <div className="mt-1 text-sm text-[#ff9a9a]">{h.score}</div>
-          </div>
-        ))}
+      {/* Highscore grid */}
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+        {highscores.length ? (
+          highscores.map((h) => (
+            <HighscoreCard key={h.timestamp} highscore={h} formatDate={formatDate} />
+          ))
+        ) : (
+          <p className="col-span-full text-center text-zinc-400">no highscores found</p>
+        )}
       </div>
     </div>
   )

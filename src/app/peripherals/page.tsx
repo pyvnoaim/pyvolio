@@ -17,10 +17,10 @@ const ICONS: Record<Peripheral['type'], React.ReactElement> = {
 }
 
 const TYPE_NAMES: Record<Peripheral['type'], string> = {
-  mouse: 'Mice',
-  mousepad: 'Mousepads',
-  keyboard: 'Keyboards',
-  headset: 'Headsets',
+  mouse: 'mice',
+  mousepad: 'mousepads',
+  keyboard: 'keyboards',
+  headset: 'headsets',
 }
 
 const TYPE_ORDER: Peripheral['type'][] = ['mouse', 'mousepad', 'keyboard', 'headset']
@@ -57,7 +57,7 @@ export default function Page() {
   if (!items.length && !loading) {
     return (
       <main className="flex flex-1 items-center justify-center">
-        <p className="text-zinc-400">No active peripherals found</p>
+        <p className="text-zinc-400">no active peripherals found</p>
       </main>
     )
   }

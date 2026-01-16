@@ -26,7 +26,7 @@ export default async function Home() {
       <div className="w-full max-w-2xl space-y-4">
         <h1 className="text-center text-lg font-bold sm:text-xl md:text-2xl">links</h1>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <LinkCard url="https://gearz.gg/pyvno" title="gearz" />
+          <LinkCard url="https://gearz.gg/pyvno" title="peripherals" />
           <LinkCard url="https://x.com/pyvnoaim" title="twitter" />
           <LinkCard url="https://evxl.app/u/pyvno" title="benchmarks" />
           <LinkCard url="https://konect.gg/rtiaul" title="ritual" />

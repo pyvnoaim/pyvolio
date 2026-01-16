@@ -19,7 +19,7 @@ export default function LinkCard({ url, title }: LinkCardProps) {
           <span className="text-sm font-semibold text-white transition-colors group-hover:text-[#ff9a9a]">
             {title}
           </span>
-          <span className="text-xs text-zinc-400">{url.replace(/^https?:\/\//, '')}</span>
+          <span className="sub-text text-xs text-zinc-400">{url.replace(/^https?:\/\//, '')}</span>
         </div>
       </div>
 

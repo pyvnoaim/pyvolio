@@ -24,22 +24,28 @@ export default function PeripheralCard({ item }: PeripheralCardProps) {
 
   const inner = (
     <div className={cardClasses}>
-      <div className="flex items-center gap-1 text-xs text-zinc-400">
-        <Icon className="text-md text-zinc-500" />
-        <span className="lowercase group-hover:text-[#ff9a9a]">{item.type}</span>
-      </div>
-
-      <div className="mt-2 text-sm font-semibold text-white">
-        {item.brand} {item.name}
-      </div>
-
-      {(item.using || item.sub) && (
-        <div className="mt-1 flex items-center text-xs">
-          {item.using && <span className="text-[#ff9a9a]">in use</span>}
-          {item.using && item.sub && <span className="px-1 text-zinc-400">-</span>}
-          {item.sub && <span className="text-zinc-400">{item.sub}</span>}
+      <div className="flex flex-col space-y-2">
+        <div className="flex items-center gap-1 text-xs text-zinc-400">
+          <Icon className="h-4 w-4 text-zinc-500" />
+          <span className="lowercase">{item.type}</span>
         </div>
-      )}
+
+        <div className="text-sm font-semibold text-white transition-colors duration-300 group-hover:text-[#ff9a9a]">
+          {item.brand} {item.name}
+        </div>
+
+        {(item.using || item.sub) && (
+          <div className="flex items-center space-x-1 text-xs">
+            {item.using && (
+              <span className="text-[#ff9a9a] duration-300 group-hover:text-[#ff9a9a]/70">
+                in use
+              </span>
+            )}
+            {item.using && item.sub && <span className="text-zinc-400">-</span>}
+            {item.sub && <span className="text-zinc-400">{item.sub}</span>}
+          </div>
+        )}
+      </div>
     </div>
   )
 

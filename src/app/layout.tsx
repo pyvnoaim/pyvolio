@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { JetBrains_Mono, Fraunces, Montserrat, Sora, Inter } from 'next/font/google'
+import { JetBrains_Mono, Fraunces, Inter } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -16,24 +16,10 @@ const fraunces = Fraunces({
   display: 'swap',
 })
 
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-  variable: '--font-montserrat',
-})
-
-const sora = Sora({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-  variable: '--font-sora',
-})
-
 const inter = Inter({
   subsets: ['latin'],
-  display: 'swap',
   variable: '--font-inter',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -79,15 +65,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${jetbrains.variable} ${montserrat.variable} ${sora.variable} ${inter.variable} antialiased`}
+      className={`${fraunces.variable} ${inter.variable} ${jetbrains.variable} antialiased`}
     >
       <body className="flex min-h-screen flex-col">
         <Navbar />
-
         <main className="flex w-full flex-1 flex-col items-center justify-start overflow-auto pt-16">
           {children}
         </main>
-
         <Footer />
       </body>
     </html>

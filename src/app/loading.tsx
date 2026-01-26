@@ -1,6 +1,7 @@
 import PeripheralSkeleton from '@/components/PeripheralCardSkeleton'
 import LinkCardSkeleton from '@/components/LinkCardSkeleton'
 import HighscoreCardSkeleton from '@/components/HighscoreCardSkeleton'
+import AchievementCardSkeleton from '@/components/AchievementCardSkeleton'
 
 /** Reusable section wrapper */
 function Section({
@@ -24,6 +25,7 @@ export default function Loading() {
   const kovaaksSkeletonCount = 6
   const peripheralSkeletonCount = 4
   const linkSkeletonCount = 4
+  const achievementSkeletonCount = 2 // adjust based on number of achievements you show
 
   return (
     <div className="flex w-full flex-col items-center space-y-8 px-4 py-6 sm:space-y-10 sm:px-6 md:space-y-12 md:px-8">
@@ -41,6 +43,15 @@ export default function Loading() {
         <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {Array.from({ length: peripheralSkeletonCount }).map((_, i) => (
             <PeripheralSkeleton key={i} />
+          ))}
+        </div>
+      </Section>
+
+      {/* Achievements */}
+      <Section title="achievements">
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+          {Array.from({ length: achievementSkeletonCount }).map((_, i) => (
+            <AchievementCardSkeleton key={i} />
           ))}
         </div>
       </Section>

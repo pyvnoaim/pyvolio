@@ -3,7 +3,7 @@ import LinkCard from '@/components/LinkCard'
 import Kovaaks from '@/components/Kovaaks'
 import { Peripheral } from '@/types'
 import SectionLayout from '@/components/SectionLayout'
-import TextType from '@/components/TextType'
+import AchievementCard from '@/components/AchievementCard'
 
 async function getPeripherals(): Promise<Peripheral[]> {
   const res = await fetch('http://pyvno.xyz/api/peripherals/active')
@@ -11,7 +11,6 @@ async function getPeripherals(): Promise<Peripheral[]> {
   return res.json()
 }
 
-/** Main Home component */
 export default async function Home() {
   const items = await getPeripherals()
   const sortedItems = items.sort((a, b) => {
@@ -36,10 +35,18 @@ export default async function Home() {
 
       {/* Peripherals */}
       <SectionLayout title="active peripherals">
-        <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {sortedItems.map((item) => (
             <PeripheralCard key={item.id} item={item} />
           ))}
+        </div>
+      </SectionLayout>
+
+      {/* Achievements */}
+      <SectionLayout title="achievements">
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+          <AchievementCard title="valorant" rank="immortal 3" icon="/val_immortal_3.png" />
+          <AchievementCard title="kovaak's / voltaic" rank="master s5" icon="/voltaic_master.svg" />
         </div>
       </SectionLayout>
 
@@ -61,19 +68,6 @@ export default async function Home() {
             />
           </div>
         </div>
-      </SectionLayout>
-
-      {/* Achievements */}
-      <SectionLayout title="achievements">
-        <span className="flex w-full items-center justify-center">
-          <TextType
-            text={['coming soon!', 'stay tuned!']}
-            cursorCharacter="_"
-            typingSpeed={75}
-            deletingSpeed={75}
-            className="text-zinc-400 italic"
-          />
-        </span>
       </SectionLayout>
     </div>
   )

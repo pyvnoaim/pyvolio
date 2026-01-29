@@ -1,24 +1,39 @@
+'use client'
+
+import { useEffect, useState } from 'react'
 import PeripheralCard from '@/components/PeripheralCard'
+import PeripheralCardSkeleton from '@/components/PeripheralCardSkeleton'
 import LinkCard from '@/components/LinkCard'
 import Kovaaks from '@/components/Kovaaks'
 import { Peripheral } from '@/types'
 import SectionLayout from '@/components/SectionLayout'
 import AchievementCard from '@/components/AchievementCard'
 
-async function getPeripherals(): Promise<Peripheral[]> {
-  const res = await fetch('http://pyvno.xyz/api/peripherals/active')
-  if (!res.ok) throw new Error('failed to fetch peripherals')
-  return res.json()
-}
+export default function Home() {
+  const [items, setItems] = useState<Peripheral[]>([])
+  const [loading, setLoading] = useState(true)
 
-export default async function Home() {
-  const items = await getPeripherals()
+  useEffect(() => {
+    const fetchPeripherals = async () => {
+      try {
+        const res = await fetch('/api/peripherals/active')
+        const data: Peripheral[] = await res.json()
+        setItems(data)
+      } catch (err) {
+        console.error('failed to fetch peripherals', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchPeripherals()
+  }, [])
+
   const sortedItems = items.sort((a, b) => {
     const order = { mouse: 0, mousepad: 1, keyboard: 2, headset: 3 }
     return (order[a.type] ?? 99) - (order[b.type] ?? 99)
   })
 
-  if (!items.length)
+  if (!items.length && !loading)
     return <p className="mt-8 text-center text-zinc-400">no active peripherals found</p>
 
   return (
@@ -36,9 +51,9 @@ export default async function Home() {
       {/* Peripherals */}
       <SectionLayout title="active peripherals">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {sortedItems.map((item) => (
-            <PeripheralCard key={item.id} item={item} />
-          ))}
+          {loading
+            ? Array.from({ length: 4 }).map((_, i) => <PeripheralCardSkeleton key={i} />)
+            : sortedItems.map((item) => <PeripheralCard key={item.id} item={item} />)}
         </div>
       </SectionLayout>
 

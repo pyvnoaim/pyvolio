@@ -14,6 +14,18 @@ const TYPE_NAMES: Record<Peripheral['type'], string> = {
 
 const TYPE_ORDER: Peripheral['type'][] = ['mouse', 'mousepad', 'keyboard', 'headset']
 
+function parseSince(since: string | null): number {
+  if (!since) return -Infinity
+  const [dd, mm, yyyy] = since.split('.').map(Number)
+  if (!dd || !mm || !yyyy) return -Infinity
+  return new Date(yyyy, mm - 1, dd).getTime()
+}
+
+function sortPeripherals(a: Peripheral, b: Peripheral): number {
+  if (a.using !== b.using) return Number(b.using) - Number(a.using)
+  return parseSince(b.since) - parseSince(a.since)
+}
+
 export default function Page() {
   const [items, setItems] = useState<Peripheral[]>([])
   const [loading, setLoading] = useState(true)
@@ -25,7 +37,7 @@ export default function Page() {
         const data: Peripheral[] = await res.json()
         setItems(data)
       } catch (err) {
-        console.error('Failed to fetch peripherals', err)
+        console.error('failed to fetch peripherals', err)
       } finally {
         setLoading(false)
       }
@@ -35,9 +47,7 @@ export default function Page() {
 
   const grouped = TYPE_ORDER.reduce(
     (acc, type) => {
-      acc[type] = items
-        .filter((item) => item.type === type)
-        .sort((a, b) => Number(b.using) - Number(a.using))
+      acc[type] = items.filter((item) => item.type === type).sort(sortPeripherals)
       return acc
     },
     {} as Record<Peripheral['type'], Peripheral[]>,

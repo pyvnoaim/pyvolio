@@ -12,4 +12,5 @@ export interface Peripheral {
   link: string | null
   since: string | null
   image: string | null
+  rating: number | null
 }

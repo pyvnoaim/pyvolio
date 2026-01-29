@@ -8,6 +8,7 @@ import { MdOutlineMouse } from 'react-icons/md'
 import { FaRegKeyboard } from 'react-icons/fa'
 import { LuSquareMousePointer } from 'react-icons/lu'
 import { X } from 'lucide-react'
+import { FaStar, FaStarHalf } from 'react-icons/fa6'
 
 interface PeripheralModalProps {
   item: Peripheral
@@ -22,7 +23,44 @@ const ICONS: Record<PeripheralType, React.ComponentType<{ className?: string }>>
   headset: FiHeadphones,
 }
 
+function RatingStars({ rating }: { rating: number }) {
+  const fullStars = Math.floor(rating)
+  const hasHalfStar = rating % 1 >= 0.5
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0)
+
+  return (
+    <div className="flex items-center gap-1 text-[#ff9a9a]">
+      {Array.from({ length: fullStars }).map((_, i) => (
+        <FaStar key={`full-${i}`} />
+      ))}
+      {hasHalfStar && <FaStarHalf />}
+      {Array.from({ length: emptyStars }).map((_, i) => (
+        <FaStar key={`empty-${i}`} className="opacity-20" />
+      ))}
+    </div>
+  )
+}
+
 export default function PeripheralModal({ item, open, onClose }: PeripheralModalProps) {
+  const isoSince = item.since
+    ? (() => {
+        const [dd, mm, yyyy] = item.since.split('.').map(Number)
+        if (!dd || !mm || !yyyy) return undefined
+        return new Date(yyyy, mm - 1, dd).toISOString()
+      })()
+    : undefined
+
+  const formatDateOnly = (iso?: string) => {
+    if (!iso) return 'unknown date'
+    const parsed = new Date(iso)
+    if (Number.isNaN(parsed.valueOf())) return 'unknown date'
+    return new Intl.DateTimeFormat(undefined, {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    }).format(parsed)
+  }
+
   useEffect(() => {
     if (!open) return
 
@@ -45,12 +83,9 @@ export default function PeripheralModal({ item, open, onClose }: PeripheralModal
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center px-4 sm:px-0">
-      {/* backdrop */}
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
 
-      {/* modal */}
       <div className="relative z-10 max-h-[90vh] w-full max-w-md overflow-x-hidden overflow-y-auto rounded-lg border border-zinc-700 bg-zinc-900 shadow-lg">
-        {/* close button */}
         <button
           onClick={onClose}
           aria-label="Close"
@@ -59,7 +94,6 @@ export default function PeripheralModal({ item, open, onClose }: PeripheralModal
           <X size={20} />
         </button>
 
-        {/* image banner */}
         {item.image && (
           <div className="relative flex h-40 w-full items-center justify-center bg-zinc-900 sm:h-52 md:h-56">
             <Image
@@ -72,7 +106,6 @@ export default function PeripheralModal({ item, open, onClose }: PeripheralModal
           </div>
         )}
 
-        {/* content */}
         <div className="p-4 sm:p-6">
           <div className="mb-1 flex items-center gap-2 text-xs text-zinc-400">
             <TypeIcon className="h-4 w-4 text-zinc-500" />
@@ -88,7 +121,15 @@ export default function PeripheralModal({ item, open, onClose }: PeripheralModal
             {item.variant && <div>variant: {item.variant}</div>}
             {item.color && <div>color: {item.color}</div>}
             {item.info && <div>info: {item.info}</div>}
-            {item.since && <div>since: {item.since}</div>}
+
+            {isoSince && <div>since: {formatDateOnly(isoSince)}</div>}
+
+            {typeof item.rating === 'number' && (
+              <div className="flex items-center gap-2">
+                <span>rating:</span>
+                <RatingStars rating={item.rating} />
+              </div>
+            )}
           </div>
 
           {item.link && (
@@ -96,7 +137,7 @@ export default function PeripheralModal({ item, open, onClose }: PeripheralModal
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-block text-sm text-[#ff9a9a] hover:underline sm:text-base"
+              className="mt-4 inline-block text-sm text-[#ff9a9a] sm:text-base"
             >
               view product {'->'}
             </a>

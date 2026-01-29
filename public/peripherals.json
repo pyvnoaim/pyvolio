@@ -10,6 +10,7 @@
     "using": false,
     "link": "https://www.maxgaming.gg/de/kabellos/labx2f-size1-schwarz",
     "since": "23.07.2025",
+    "rating": 4,
     "image": "peripherals/pulsar_x2f.png"
   },
   {
@@ -23,6 +24,7 @@
     "using": true,
     "link": "https://www.maxgaming.gg/de/mauspads/mauspad-fx-raiden-soft-xl-daidai-orange",
     "since": "14.11.2025",
+    "rating": 5,
     "image": "peripherals/artisan_raiden.png"
   },
   {
@@ -36,6 +38,7 @@
     "using": true,
     "link": "https://wooting.io/wooting-60he",
     "since": "30.10.2023",
+    "rating": 5,
     "image": "peripherals/wooting_60he.png"
   },
   {
@@ -49,6 +52,7 @@
     "using": true,
     "link": "https://www.maxgaming.gg/de/kopfhorer/lucid-in-ear-headset",
     "since": "31.10.2025",
+    "rating": 5,
     "image": "peripherals/tekkusai_lucid.png"
   },
   {
@@ -62,6 +66,7 @@
     "using": false,
     "link": "https://www.maxgaming.gg/de/kabellos/vancer-akitsu-carbon-fiber",
     "since": "09.01.2025",
+    "rating": 4,
     "image": "peripherals/arbiter_akitsu.png"
   },
   {
@@ -75,6 +80,7 @@
     "using": true,
     "link": "https://www.maxgaming.gg/de/kabelgebunden/endgame-gear-op1-8k-v2-vit",
     "since": "29.10.2025",
+    "rating": 4,
     "image": "peripherals/op1_8k_v2.png"
   },
   {
@@ -88,6 +94,7 @@
     "using": false,
     "link": "https://www.maxgaming.gg/de/kabellos/pulsar-tenz-signature-edition",
     "since": "04.06.2025",
+    "rating": 3,
     "image": "peripherals/pulsar_tenz.png"
   },
   {
@@ -101,6 +108,7 @@
     "using": false,
     "link": "https://www.maxgaming.gg/de/mauspads/energon-pro-hybrid-gaming-mauspad-xsoft",
     "since": "17.07.2025",
+    "rating": 3,
     "image": "peripherals/lamzu_energon.png"
   },
   {
@@ -114,6 +122,7 @@
     "using": false,
     "link": "https://www.maxgaming.gg/de/mauspads/saturn-gaming-mauspad-xl",
     "since": "17.07.2025",
+    "rating": 2,
     "image": "peripherals/lgg_saturn.png"
   },
   {
@@ -127,6 +136,7 @@
     "using": false,
     "link": "https://www.maxgaming.gg/de/mauspads/singularity-glas-mauspad-fe",
     "since": "05.09.2025",
+    "rating": 4.5,
     "image": "peripherals/tekkusai_singularity.png"
   },
   {
@@ -140,6 +150,7 @@
     "using": false,
     "link": "https://wallhack.com/de-de/products/cr-005-black",
     "since": "17.11.2025",
+    "rating": 5,
     "image": "peripherals/wallhack_cr005.png"
   },
   {
@@ -153,6 +164,7 @@
     "using": false,
     "link": "https://wallhack.com/de-de/pages/blind-box",
     "since": "02.10.2025",
+    "rating": 3,
     "image": "peripherals/wallhack_sy001.png"
   },
   {
@@ -166,6 +178,7 @@
     "using": false,
     "link": "https://wallhack.com/de-de/pages/museum",
     "since": "05.11.2024",
+    "rating": 5,
     "image": "peripherals/wallhack_sp004_twins.png"
   },
   {
@@ -179,6 +192,7 @@
     "using": false,
     "link": "https://www.maxgaming.gg/de/kopfhorer/zero-iem-kopfhorer-blau",
     "since": "19.10.2024",
+    "rating": 4,
     "image": "peripherals/truthear_zero_blue.png"
   },
   {
@@ -192,6 +206,7 @@
     "using": false,
     "link": "https://wallhack.com/en-de/products/sp-005-evangelion",
     "since": "27.01.2026",
+    "rating": null,
     "image": "peripherals/wallhack_sp005_evangelion.png"
   }
 ]

@@ -208,5 +208,19 @@
     "since": "27.01.2026",
     "rating": null,
     "image": "peripherals/wallhack_sp005_evangelion.png"
+  },
+  {
+    "id": 16,
+    "type": "mousepad",
+    "brand": "yukiaim",
+    "name": "monokuro",
+    "variant": "",
+    "color": "",
+    "info": "glass",
+    "using": false,
+    "link": "https://www.maxgaming.gg/de/mauspads/yuki-aim-monokuro-glas-mauspad-limited-edition",
+    "since": "30.01.2026",
+    "rating": null,
+    "image": "peripherals/yukiaim_monokuro.png"
   }
 ]

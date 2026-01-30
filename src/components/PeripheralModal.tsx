@@ -121,6 +121,8 @@ export default function PeripheralModal({ item, open, onClose }: PeripheralModal
             {item.variant && <div>variant: {item.variant}</div>}
             {item.color && <div>color: {item.color}</div>}
             {item.info && <div>info: {item.info}</div>}
+            {item.surface && <div>surface: {item.surface}</div>}
+            {item.skates && <div>skates: {item.skates}</div>}
 
             {isoSince && <div>since: {formatDateOnly(isoSince)}</div>}
 

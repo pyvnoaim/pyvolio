@@ -8,6 +8,8 @@ export interface Peripheral {
   variant: string | null
   color: string | null
   info: string | null
+  skates?: string | null
+  surface?: string | null
   using: boolean
   link: string | null
   since: string | null

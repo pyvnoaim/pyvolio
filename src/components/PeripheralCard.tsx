@@ -47,6 +47,8 @@ export default function PeripheralCard({ item }: { item: Peripheral }) {
     item.variant && <span key="variant">{item.variant}</span>,
     item.color && <span key="color">{item.color}</span>,
     item.info && <span key="info">{item.info}</span>,
+    item.surface && <span key="surface">{item.surface}</span>,
+    item.skates && <span key="skates">{item.skates}</span>,
   ].filter(Boolean)
 
   return (

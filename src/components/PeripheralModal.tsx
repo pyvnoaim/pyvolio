@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useEffect } from 'react'
 import type { Peripheral, PeripheralType } from '@/types'
+import { useFormatDate } from '@/lib/useFormatDate'
 import { FiHeadphones } from 'react-icons/fi'
 import { MdOutlineMouse } from 'react-icons/md'
 import { FaRegKeyboard } from 'react-icons/fa'
@@ -42,24 +43,7 @@ function RatingStars({ rating }: { rating: number }) {
 }
 
 export default function PeripheralModal({ item, open, onClose }: PeripheralModalProps) {
-  const isoSince = item.acquired
-    ? (() => {
-        const [dd, mm, yyyy] = item.acquired.split('.').map(Number)
-        if (!dd || !mm || !yyyy) return undefined
-        return new Date(yyyy, mm - 1, dd).toISOString()
-      })()
-    : undefined
-
-  const formatDateOnly = (iso?: string) => {
-    if (!iso) return 'unknown date'
-    const parsed = new Date(iso)
-    if (Number.isNaN(parsed.valueOf())) return 'unknown date'
-    return new Intl.DateTimeFormat(undefined, {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    }).format(parsed)
-  }
+  const formatDate = useFormatDate()
 
   useEffect(() => {
     if (!open) return
@@ -124,7 +108,7 @@ export default function PeripheralModal({ item, open, onClose }: PeripheralModal
             {item.surface && <div>surface: {item.surface}</div>}
             {item.skates && <div>skates: {item.skates}</div>}
 
-            {isoSince && <div>acquired: {formatDateOnly(isoSince)}</div>}
+            {item.acquired && <div>acquired: {formatDate(item.acquired)}</div>}
 
             {typeof item.rating === 'number' && (
               <div className="flex items-center gap-2">

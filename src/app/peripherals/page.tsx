@@ -14,16 +14,13 @@ const TYPE_NAMES: Record<Peripheral['type'], string> = {
 
 const TYPE_ORDER: Peripheral['type'][] = ['mouse', 'mousepad', 'keyboard', 'headset']
 
-function parseSince(acquired: string | null): number {
-  if (!acquired) return -Infinity
-  const [dd, mm, yyyy] = acquired.split('.').map(Number)
-  if (!dd || !mm || !yyyy) return -Infinity
-  return new Date(yyyy, mm - 1, dd).getTime()
-}
-
+// Sort peripherals: in use first, then newest acquired
 function sortPeripherals(a: Peripheral, b: Peripheral): number {
   if (a.using !== b.using) return Number(b.using) - Number(a.using)
-  return parseSince(b.acquired) - parseSince(a.acquired)
+
+  const dateA = a.acquired ? new Date(a.acquired).getTime() : 0
+  const dateB = b.acquired ? new Date(b.acquired).getTime() : 0
+  return dateB - dateA
 }
 
 export default function Page() {

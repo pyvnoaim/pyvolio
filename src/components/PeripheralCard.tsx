@@ -18,12 +18,10 @@ const ICONS: Record<Peripheral['type'], React.ComponentType<{ className?: string
 function isNewSince(dateStr: string | null | undefined, days = 30): boolean {
   if (!dateStr) return false
 
-  const [dd, mm, yyyy] = dateStr.split('.').map(Number)
-  if (!dd || !mm || !yyyy) return false
+  const sinceDate = new Date(dateStr)
+  if (Number.isNaN(sinceDate.valueOf())) return false
 
-  const sinceDate = new Date(yyyy, mm - 1, dd)
   const now = new Date()
-
   const diffMs = now.getTime() - sinceDate.getTime()
   const diffDays = diffMs / (1000 * 60 * 60 * 24)
 

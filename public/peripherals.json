@@ -10,7 +10,7 @@
     "skates": "ghostglides cyclone pro",
     "using": false,
     "link": "https://www.maxgaming.gg/de/kabellos/labx2f-size1-schwarz",
-    "since": "23.07.2025",
+    "acquired": "23.07.2025",
     "rating": 4,
     "image": "peripherals/pulsar_x2f.png"
   },
@@ -25,7 +25,7 @@
     "surface": "cloth",
     "using": true,
     "link": "https://www.maxgaming.gg/de/mauspads/mauspad-fx-raiden-soft-xl-daidai-orange",
-    "since": "14.11.2025",
+    "acquired": "14.11.2025",
     "rating": 5,
     "image": "peripherals/artisan_raiden.png"
   },
@@ -39,7 +39,7 @@
     "info": "",
     "using": true,
     "link": "https://wooting.io/wooting-60he",
-    "since": "30.10.2023",
+    "acquired": "30.10.2023",
     "rating": 5,
     "image": "peripherals/wooting_60he.png"
   },
@@ -53,7 +53,7 @@
     "info": "",
     "using": true,
     "link": "https://www.maxgaming.gg/de/kopfhorer/lucid-in-ear-headset",
-    "since": "31.10.2025",
+    "acquired": "31.10.2025",
     "rating": 5,
     "image": "peripherals/tekkusai_lucid.png"
   },
@@ -68,7 +68,7 @@
     "skates": "unusual way sports magic ice",
     "using": false,
     "link": "https://www.maxgaming.gg/de/kabellos/vancer-akitsu-carbon-fiber",
-    "since": "09.01.2025",
+    "acquired": "09.01.2025",
     "rating": 4,
     "image": "peripherals/arbiter_akitsu.png"
   },
@@ -83,8 +83,8 @@
     "skates": "artisan mizugumo",
     "using": true,
     "link": "https://www.maxgaming.gg/de/kabelgebunden/endgame-gear-op1-8k-v2-vit",
-    "since": "29.10.2025",
-    "rating": 4,
+    "acquired": "29.10.2025",
+    "rating": 4.5,
     "image": "peripherals/op1_8k_v2.png"
   },
   {
@@ -94,11 +94,11 @@
     "name": "tenz signature",
     "variant": "",
     "color": "black",
-    "info": "want to sell",
+    "info": "want to sell 120€",
     "skates": "",
     "using": false,
     "link": "https://www.maxgaming.gg/de/kabellos/pulsar-tenz-signature-edition",
-    "since": "04.06.2025",
+    "acquired": "04.06.2025",
     "rating": 3,
     "image": "peripherals/pulsar_tenz.png"
   },
@@ -113,7 +113,7 @@
     "surface": "cloth",
     "using": false,
     "link": "https://www.maxgaming.gg/de/mauspads/energon-pro-hybrid-gaming-mauspad-xsoft",
-    "since": "17.07.2025",
+    "acquired": "17.07.2025",
     "rating": 3,
     "image": "peripherals/lamzu_energon.png"
   },
@@ -128,7 +128,7 @@
     "surface": "cloth",
     "using": false,
     "link": "https://www.maxgaming.gg/de/mauspads/saturn-gaming-mauspad-xl",
-    "since": "17.07.2025",
+    "acquired": "17.07.2025",
     "rating": 2,
     "image": "peripherals/lgg_saturn.png"
   },
@@ -143,7 +143,7 @@
     "surface": "glass",
     "using": false,
     "link": "https://www.maxgaming.gg/de/mauspads/singularity-glas-mauspad-fe",
-    "since": "05.09.2025",
+    "acquired": "05.09.2025",
     "rating": 4.5,
     "image": "peripherals/tekkusai_singularity.png"
   },
@@ -158,7 +158,7 @@
     "surface": "glass",
     "using": false,
     "link": "https://wallhack.com/de-de/products/cr-005-black",
-    "since": "17.11.2025",
+    "acquired": "17.11.2025",
     "rating": 5,
     "image": "peripherals/wallhack_cr005.png"
   },
@@ -173,7 +173,7 @@
     "surface": "cloth",
     "using": false,
     "link": "https://wallhack.com/de-de/pages/blind-box",
-    "since": "02.10.2025",
+    "acquired": "02.10.2025",
     "rating": 3,
     "image": "peripherals/wallhack_sy001.png"
   },
@@ -188,7 +188,7 @@
     "surface": "glass",
     "using": false,
     "link": "https://wallhack.com/de-de/pages/museum",
-    "since": "05.11.2024",
+    "acquired": "05.11.2024",
     "rating": 5,
     "image": "peripherals/wallhack_sp004_twins.png"
   },
@@ -202,7 +202,7 @@
     "info": "",
     "using": false,
     "link": "https://www.maxgaming.gg/de/kopfhorer/zero-iem-kopfhorer-blau",
-    "since": "19.10.2024",
+    "acquired": "19.10.2024",
     "rating": 4,
     "image": "peripherals/truthear_zero_blue.png"
   },
@@ -217,7 +217,7 @@
     "surface": "glass",
     "using": false,
     "link": "https://wallhack.com/en-de/products/sp-005-evangelion",
-    "since": "27.01.2026",
+    "acquired": "27.01.2026",
     "rating": null,
     "image": "peripherals/wallhack_sp005_evangelion.png"
   },
@@ -232,7 +232,7 @@
     "surface": "glass",
     "using": false,
     "link": "https://www.maxgaming.gg/de/mauspads/yuki-aim-monokuro-glas-mauspad-limited-edition",
-    "since": "30.01.2026",
+    "acquired": "30.01.2026",
     "rating": null,
     "image": "peripherals/yukiaim_monokuro.png"
   }

@@ -12,7 +12,7 @@ export interface Peripheral {
   surface?: string | null
   using: boolean
   link: string | null
-  since: string | null
+  acquired: string | null
   image: string | null
   rating: number | null
 }

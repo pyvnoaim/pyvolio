@@ -42,9 +42,9 @@ function RatingStars({ rating }: { rating: number }) {
 }
 
 export default function PeripheralModal({ item, open, onClose }: PeripheralModalProps) {
-  const isoSince = item.since
+  const isoSince = item.acquired
     ? (() => {
-        const [dd, mm, yyyy] = item.since.split('.').map(Number)
+        const [dd, mm, yyyy] = item.acquired.split('.').map(Number)
         if (!dd || !mm || !yyyy) return undefined
         return new Date(yyyy, mm - 1, dd).toISOString()
       })()
@@ -124,7 +124,7 @@ export default function PeripheralModal({ item, open, onClose }: PeripheralModal
             {item.surface && <div>surface: {item.surface}</div>}
             {item.skates && <div>skates: {item.skates}</div>}
 
-            {isoSince && <div>since: {formatDateOnly(isoSince)}</div>}
+            {isoSince && <div>acquired: {formatDateOnly(isoSince)}</div>}
 
             {typeof item.rating === 'number' && (
               <div className="flex items-center gap-2">

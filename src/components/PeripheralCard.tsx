@@ -35,7 +35,7 @@ const cardClasses =
 
 export default function PeripheralCard({ item }: { item: Peripheral }) {
   const Icon = ICONS[item.type]
-  const isNew = isNewSince(item.since)
+  const isNew = isNewSince(item.acquired)
   const [open, setOpen] = useState(false)
 
   const details = [

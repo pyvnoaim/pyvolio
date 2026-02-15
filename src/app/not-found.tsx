@@ -8,9 +8,9 @@ export default function NotFound() {
         cursorCharacter="_"
         typingSpeed={75}
         deletingSpeed={75}
-        className="text-3xl font-semibold"
+        className="heading text-3xl font-semibold"
       />
-      <p className="text-zinc-400">the resource you’re looking for doesn’t exist</p>
+      <p className="sub-text">the resource you’re looking for doesn’t exist</p>
     </div>
   )
 }

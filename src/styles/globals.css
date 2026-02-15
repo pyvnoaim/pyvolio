@@ -30,6 +30,7 @@ body {
   color: var(--foreground);
 }
 
+.heading,
 h1,
 h2,
 h3,
@@ -43,4 +44,5 @@ h6 {
 code,
 pre {
   font-family: var(--font-mono);
+  color: #a1a1aa;
 }

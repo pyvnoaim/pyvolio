@@ -14,9 +14,7 @@ export default function HighscoreCard({ highscore, formatDate, loading }: Highsc
 
   return (
     <div className="group flex flex-col rounded-lg border border-zinc-700 bg-zinc-900 p-4 transition-all duration-300 hover:scale-[1.02] hover:border-zinc-500 hover:shadow-md">
-      <div className="sub-text text-xs text-zinc-400">
-        {formatDate?.(highscore.timestamp, true)}
-      </div>
+      <div className="sub-text text-xs">{formatDate?.(highscore.timestamp, true)}</div>
       <div className="mt-1 text-sm font-semibold text-white duration-300 group-hover:text-[#ff9a9a]">
         {highscore.scenario}
       </div>
